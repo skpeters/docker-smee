@@ -4,8 +4,8 @@ services:
     build:
       context: ./smee
       dockerfile: Dockerfile
-      args:
-        WEBHOOK_PROXY_URL: ${WEBHOOK_PROXY_URL}
+    network_mode: host  # Currently, the host networking driver only works on Linux hosts
     ports:
       - "3000:3000"
+    command: ["--url", "${WEBHOOK_PROXY_URL}", "--path", "/github-webhook/", "--port", "8081"]
     restart: always
