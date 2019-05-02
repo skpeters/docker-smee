@@ -1,0 +1,11 @@
+version: '3'
+services:
+  smee:
+    build:
+      context: ./smee
+      dockerfile: Dockerfile
+      args:
+        WEBHOOK_PROXY_URL: ${WEBHOOK_PROXY_URL}
+    ports:
+      - "3000:3000"
+    restart: always
